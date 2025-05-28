@@ -15,7 +15,6 @@ def get_data_from_url(url, headers,record_path=None, meta=None, meta_prefix=None
         else:
             return None
     except Exception as e:
-        pass
         print(f"Erreur pour {url}: {e}")
         return None
 
@@ -25,14 +24,14 @@ def url_to_dataframe(url_start, url_end_list, url_params, headers, record_path=N
         futures = [executor.submit(get_data_from_url, url_start + str(i) + url_params, headers, record_path, meta, meta_prefix)
                    for i in url_end_list]
         
-        if len(futures) > 0:
-            all_datas = futures[0].result()
-            futures.pop(0)
-        else:
-            return None
+        all_datas = None
 
         for future in tqdm(as_completed(futures), total=len(futures)):
             result = future.result()
-            all_datas = all_datas._append(result, ignore_index=True)
+            if isinstance(result, pd.DataFrame): 
+                if isinstance(all_datas, pd.DataFrame):
+                    all_datas = all_datas._append(result, ignore_index=True)
+                else:
+                    all_datas = result
 
     return pd.DataFrame(all_datas)

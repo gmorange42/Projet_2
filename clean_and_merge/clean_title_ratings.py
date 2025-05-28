@@ -5,8 +5,8 @@ path = (str(Path(__file__).resolve().parent.parent).replace('\\', '\\\\'))
 #import ratings tsv
 df = pd.read_csv("https://datasets.imdbws.com/title.ratings.tsv.gz", sep="\t")
 
-#on ne garde que les lignes avec un averageRating >= 7 et avec un numVotes >= 1000
-condition = (df["averageRating"]>=7) & (df["numVotes"] >=1000)
+#on ne garde que les lignes avec un averageRating >= 6 et avec un numVotes >= 1000
+condition = (df["averageRating"]>=6.9) & (df["numVotes"] >=1000)
 df_new = df[condition]
 df_new = df_new.set_index("tconst")
 

@@ -43,6 +43,10 @@ df_tmdb = df_tmdb.rename(columns={'imdb_id': 'tconst'})
 #on merge la table de titres de films et de tmdb
 df_movies = pd.merge(left=df_movies, right=df_tmdb, how='inner', on='tconst')
 
+#on filtre les films en fonction de leurs startYear et origin_country
+df_movies = df_movies[((df_movies['startYear'] >= 1950) & (df_movies['origin_country'].astype(str).str.contains('FR')) |
+                       ((df_movies['startYear'] >= 1960) & (df_movies['origin_country'].astype(str).str.contains('US'))))]
+
 #on supprime le dataframe df_tmdb qui devient inutile
 del df_tmdb
 
