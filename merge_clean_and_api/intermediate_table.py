@@ -2,7 +2,7 @@ import pandas as pd
 from pathlib import Path
 path = str(Path(__file__).resolve().parent.parent).replace('\\', '\\\\')
 
-df_movies = pd.read_csv(path + "\\\\final_csv\\\\merge_movies.csv.zip")
+df_movies = pd.read_csv(path + "\\\\final_csv\\\\movies.csv.zip")
 df_princi = pd.read_csv(path + "\\\\csv\\\\title_principals.csv.zip")
 
 df_inter = pd.merge(left=df_movies, right=df_princi, how='left', left_on='imdb_id', right_on='tconst')

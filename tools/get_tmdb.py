@@ -18,11 +18,11 @@ def create_tmdb(df_movies):
 
     df_tmdb.drop(columns=['adult', 'genres','homepage', 'original_language', 'original_title', 'backdrop_path',
                           'production_companies', 'production_countries', 'release_date', 'runtime',
-                          'spoken_languages', 'status', 'tagline', 'title', 'video', 'vote_average',
-                          'vote_count', 'belongs_to_collection.id', 'belongs_to_collection.name',
+                          'spoken_languages', 'status', 'tagline', 'video', 'vote_average',
+                          'vote_count', 'belongs_to_collection', 'belongs_to_collection.name',
                           'belongs_to_collection.poster_path', 'belongs_to_collection.backdrop_path'], inplace=True)
     #remplacement des valeur \N et None par No_collection dans la colonne belongs_to_collection 
-    df_tmdb['belongs_to_collection'] = df_tmdb['belongs_to_collection'].replace(['\\N', None], 'No_collection')
+    df_tmdb['belongs_to_collection.id'] = df_tmdb['belongs_to_collection.id'].replace(['\\N', None], 'No_collection')
     
     #On filtre les lignes contenant les pays US et FR
     df_tmdb = df_tmdb[df_tmdb['origin_country'].astype(str).str.contains('US|FR', regex=True)]

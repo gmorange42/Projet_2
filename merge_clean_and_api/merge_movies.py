@@ -11,9 +11,9 @@ df_merge_movies = pd.merge(left=df_merge_movies, right=df_api_videos, how='left'
 
 df_merge_movies.drop(columns=['id', 'tmdb_movie_id'], inplace=True)
 df_merge_movies.rename(columns={'tconst': 'imdb_id'}, inplace=True)
-df_merge_movies = df_merge_movies[['imdb_id', 'tmdb_id', 'originalTitle', 'startYear', 'runtimeMinutes', 'genres',
-                                  'averageRating', 'numVotes', 'belongs_to_collection', 'budget', 'revenue',
+df_merge_movies = df_merge_movies[['imdb_id', 'tmdb_id', 'title','originalTitle', 'startYear', 'runtimeMinutes', 'genres',
+                                  'averageRating', 'numVotes', 'belongs_to_collection.id', 'budget', 'revenue',
                                   'origin_country', 'overview', 'popularity', 'poster_path',
                                   'keywords_name', 'video_link']]
 
-df_merge_movies.to_csv(path + "\\\\final_csv\\\\merge_movies.csv.zip", index=False, compression='zip')
+df_merge_movies.to_csv(path + "\\\\final_csv\\\\movies.csv.zip", index=False, compression='zip')

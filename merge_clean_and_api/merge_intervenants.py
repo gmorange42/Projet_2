@@ -15,7 +15,7 @@ df_merge_people = df_merge_people[['tmdb_id', 'imdb_id', 'primaryName', 'categor
                                   'knownForTitles', 'biography', 'birthday',
                                   'gender', 'place_of_birth', 'popularity', 'profile_path']]
 
-df_merge_people.to_csv(path + "\\\\final_csv\\\\merge_people.csv.zip", index=False, compression='zip')
+df_merge_people.to_csv(path + "\\\\final_csv\\\\people.csv.zip", index=False, compression='zip')
 del df_fb
 del df_merge_people
 del df_name
