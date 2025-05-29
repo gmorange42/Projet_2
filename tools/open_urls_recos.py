@@ -11,21 +11,19 @@ df_movies = pd.read_csv(path + '\\\\final_csv\\\\movies.csv.zip')
 def open_url_recos(movies):
     #On retrouvee la ligne du film
     temp = df_movies[df_movies['title'] == movies]
-    print("Le Seigneur des anneaux : La Communauté de l'anneau")
-    print(str(temp['title'].item()))
+
     #Si pas de d'occurence on quitte le programme
     if len(temp) == 0:
         return
 
     #On cast la series en string
-    temp = str(temp['imdb_id_recos'].item())
+    temp = temp['imdb_id_recos'].iloc[0]
 
     #On enleve les []', et on cast la strind en list
     temp = re.sub(r'[\[\]\',]', '', temp).split(sep=' ')
 
     #On boucle sur la liste pour ouvrir un lien imdb pour chaque id contenue dans la liste
     for v in temp:
-        print(v)
         webbrowser.open(f'https://www.imdb.com/fr/title/{v}')
 
 
