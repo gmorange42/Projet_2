@@ -47,8 +47,24 @@ df_movies = pd.merge(left=df_movies, right=df_tmdb, how='inner', on='tconst')
 df_movies = df_movies[((df_movies['startYear'] >= 1950) & (df_movies['origin_country'].astype(str).str.contains('FR')) |
                        ((df_movies['startYear'] >= 1960) & (df_movies['origin_country'].astype(str).str.contains('US'))))]
 
+
 #on supprime le dataframe df_tmdb qui devient inutile
 del df_tmdb
 
+#on ajoute le debut de l'URL sur le poster_path
+df_movies['poster_path'] = df_movies['poster_path'].apply(lambda x : 'https://image.tmdb.org/t/p/original' + x)
+
+
+#On stock dans une liste les titres qui apparaissent plusieur fois (films ayant le meme nom)
+multi_titles = []
+for (k,v) in df_movies.title.value_counts().items():
+    if v > 1:
+        multi_titles.append(k)
+
+#On ajouter la date de sortie au titre du film si celui si apparrait plusieur fois
+df_movies['title'] = df_movies.apply(lambda x : x['title'] + f" ({x['startYear']})" if x['title'] in multi_titles else x['title'],axis=1)
+
+#on enregistre le dataframe sous forme de csv zipper
 df_movies.to_csv(path + "\\\\csv\\\\movies.csv.zip", index=False, compression='zip')
+
 del df_movies

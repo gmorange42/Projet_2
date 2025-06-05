@@ -1,0 +1,17 @@
+
+
+
+Les variables utilisées pour entrainer notre modele de recommandations:
+
+- startYear
+- runtimeMinutes
+- genres
+- averageRating
+- popularity
+- origin_country
+
+Nombre de recommandations par film: 5 (parametrable)
+
+
+
+
