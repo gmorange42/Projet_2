@@ -80,7 +80,7 @@ def add_reco(df:pd.DataFrame, value_to_take_col:str, n_neighbors:int=5, new_col:
 df_movies = pd.read_csv(path + '\\\\final_csv\\\\movies.csv.zip')
 
 #on y ajoute les recommandations
-df_movies = add_reco(df_movies, 'imdb_id', 20, "imdb_id_recos")
+df_movies = add_reco(df_movies, 'imdb_id', 9, "imdb_id_recos")
 
 #on remplace l'ancien csv movies par le nouveau contentant les recommandations
 df_movies.to_csv(path + "\\\\final_csv\\\\movies.csv.zip", index=False, compression='zip')
