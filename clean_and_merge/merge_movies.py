@@ -52,7 +52,8 @@ df_movies = df_movies[((df_movies['startYear'] >= 1950) & (df_movies['origin_cou
 del df_tmdb
 
 #on ajoute le debut de l'URL sur le poster_path
-df_movies['poster_path'] = df_movies['poster_path'].apply(lambda x : 'https://image.tmdb.org/t/p/original' + x)
+#df_movies['poster_path'] = df_movies['poster_path'].apply(lambda x : 'https://image.tmdb.org/t/p/original' + x)
+df_movies['poster_path'] = df_movies['poster_path'].apply(lambda x : 'https://image.tmdb.org/t/p/w500/' + x)
 
 
 #On stock dans une liste les titres qui apparaissent plusieur fois (films ayant le meme nom)
